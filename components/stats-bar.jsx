@@ -4,14 +4,15 @@ export default function StatsBar({ summary }) {
   if (!summary) return null;
 
   const sources = [
-    { key: 'web', label: 'Web' },
     { key: 'reddit', label: 'Reddit' },
     { key: 'hackernews', label: 'HN' },
     { key: 'youtube', label: 'YouTube' },
+    { key: 'polymarket', label: 'Polymarket' },
+    { key: 'github', label: 'GitHub' },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
       {sources.map(({ key, label }) => {
         const count = summary[key] || 0;
         const icon = getSourceIcon(key);

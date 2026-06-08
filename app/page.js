@@ -55,8 +55,8 @@ export default function HomePage() {
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            What's being discussed on Web, Reddit, Hacker News and YouTube in the last 30 days?
+          <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto">
+            What's trending on <strong>Reddit</strong>, <strong>HN</strong>, <strong>YouTube</strong>, <strong>Polymarket</strong> &amp; <strong>GitHub</strong> in the last 30 days?
             Single query, all sources.
           </p>
 

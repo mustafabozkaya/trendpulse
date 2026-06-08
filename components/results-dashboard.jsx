@@ -50,10 +50,11 @@ export default function ResultsDashboard({ data, topic }) {
       <div className="space-y-6">
         {activeSources.map(([source, items]) => {
           const sourceIcons = {
-            web: '🌐 Web',
             reddit: '👽 Reddit',
             hackernews: '⚡ Hacker News',
             youtube: '▶️ YouTube',
+            polymarket: '📈 Polymarket',
+            github: '🐙 GitHub',
           };
           return (
             <section key={source}>
