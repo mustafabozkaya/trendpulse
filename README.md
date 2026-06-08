@@ -1,8 +1,8 @@
 <div align="center">
-  <h1>🚀 TrendPulse</h1>
-  <p><strong>Son 30 Günün Trendlerini Keşfet — Web, Reddit, HN, YouTube</strong></p>
+  <h1 align="center">🚀 TrendPulse</h1>
+  <p align="center"><strong>Son 30 Günün Trendlerini Keşfet — Web, Reddit, HN, YouTube</strong></p>
 
-  <p>
+  <p align="center">
     <a href="https://trendpulse-green.vercel.app" target="_blank">
       <img src="https://img.shields.io/badge/Canlı-Demo-7C3AED?style=for-the-badge&logo=vercel" alt="Demo" />
     </a>
@@ -16,25 +16,10 @@
 
   <br />
 
-  <!-- Demo Videos -->
-  <table>
-    <tr>
-      <td align="center" width="50%">
-        <strong>🖥 Landscape (YouTube/X)</strong><br/><br/>
-        <video src="public/assets/trendpulse-intro.mp4" controls width="100%">
-          <a href="public/assets/trendpulse-intro.mp4">▶️ Videoyu İzle</a>
-        </video>
-      </td>
-      <td align="center" width="50%">
-        <strong>📱 Portrait (Shorts/Reels)</strong><br/><br/>
-        <video src="public/assets/trendpulse-intro-mobile.mp4" controls width="50%">
-          <a href="public/assets/trendpulse-intro-mobile.mp4">▶️ Videoyu İzle</a>
-        </video>
-      </td>
-    </tr>
-  </table>
+  <!-- Demo GIF -->
+  <img src="public/assets/trendpulse-demo.gif" alt="TrendPulse Demo" width="100%" />
 
-  <br/>
+  <br/><br/>
 
   <!-- Screenshots -->
   <table>
@@ -53,22 +38,20 @@
 
 ## ✨ Özellikler
 
-| | Özellik | Detay |
-|---|---------|-------|
-| 🌐 | **Çoklu Kaynak** | Web, Reddit, Hacker News, YouTube — tek sorguda |
-| ⚡ | **Hızlı** | ~1-2 saniyede sonuçlar |
-| 🔒 | **Sıfır API Key** | DuckDuckGo + Reddit JSON + HN Algolia + Invidious |
-| 📦 | **Sıfır Kurulum** | Browser'da aç, kullanmaya başla |
-| 🆓 | **Tamamen Ücretsiz** | Şimdilik — roadmap'te ücretli tier'lar var |
-| 📱 | **Responsive** | Mobil, tablet, desktop hepsinde çalışır |
-| 🔄 | **Cache + Rate Limit** | Akıllı cache (5dk TTL), IP bazlı rate limiting (10req/dk) |
-| 📜 | **Açık Kaynak (MIT)** | Kopyala, fork'la, geliştir |
+- **🌐 Çoklu Kaynak** — Web, Reddit, Hacker News, YouTube — tek sorguda
+- **⚡ Hızlı** — ~1-2 saniyede sonuçlar
+- **🔒 Sıfır API Key** — DuckDuckGo + Reddit JSON + HN Algolia + Invidious
+- **📦 Sıfır Kurulum** — Browser'da aç, kullanmaya başla
+- **🆓 Tamamen Ücretsiz** — Şimdilik
+- **📱 Responsive** — Mobil, tablet, desktop
+- **🔄 Cache + Rate Limit** — 5dk TTL, 10req/dk/IP
+- **📜 Açık Kaynak (MIT)** — Fork'la, geliştir
 
 ## 🚀 Canlı Demo
 
 👉 **https://trendpulse-green.vercel.app**
 
-Hiçbir şey kurmadan hemen kullanmaya başlayabilirsin. Bir konu yaz, 1-2 saniye içinde Web + Reddit + HN + YouTube sonuçlarını gör.
+Hiçbir şey kurmadan hemen kullanmaya başla. Bir konu yaz, 1-2sn'de Web + Reddit + HN + YouTube sonuçları gelsin.
 
 ## 🛠️ Nasıl Çalışır?
 
@@ -93,51 +76,41 @@ Kullanıcı → Arama sorgusu → API Gateway
 | **Deploy** | Vercel (Serverless Functions) |
 | **Cache** | In-memory TTL cache (5dk, max 200 entry) |
 | **Rate Limit** | IP-based (10 istek/dk) |
-| **Arama Motorları** | DuckDuckGo, Reddit JSON, HN Algolia, Invidious |
-| **Video (Remotion)** | [Remotion](https://remotion.dev) — React ile video |
+| **Arama** | DuckDuckGo, Reddit JSON, HN Algolia, Invidious |
 
 ## 🏗️ Proje Yapısı
 
 ```
 trendpulse/
 ├── app/
-│   ├── api/research/route.js   # API endpoint (cache + rate-limit + paralel arama)
+│   ├── api/research/route.js   # API endpoint (cache + rate-limit + paralel)
 │   ├── page.js                 # Ana sayfa
 │   ├── layout.js               # SEO, OG, metadata
-│   ├── not-found.js            # 404 sayfası
+│   ├── not-found.js            # 404
 │   └── robots.js               # SEO robots
 ├── components/
-│   ├── search-bar.jsx          # Arama çubuğu
-│   ├── source-card.jsx         # Kaynak kartı
-│   ├── stats-bar.jsx           # İstatistik paneli
-│   ├── results-dashboard.jsx   # Sonuç gösterimi
-│   └── trending-topics.jsx     # Popüler konu butonları
+│   ├── search-bar.jsx
+│   ├── source-card.jsx
+│   ├── stats-bar.jsx
+│   ├── results-dashboard.jsx
+│   └── trending-topics.jsx
 ├── lib/
 │   ├── cache.js                # In-memory cache
 │   ├── rate-limit.js           # Rate limiter
 │   ├── research.js             # Çoklu kaynak arama motoru
-│   └── utils.js                # Yardımcı fonksiyonlar
+│   └── utils.js
 ├── public/
-│   ├── assets/                 # Screenshots + Remotion videoları
-│   └── favicon.svg             # Favicon
+│   └── assets/                 # Screenshots + demo GIF
 └── package.json
 ```
 
 ## ⚙️ Geliştirme
 
 ```bash
-# 1. Repoyu klonla
 git clone https://github.com/mustafabozkaya/trendpulse.git
 cd trendpulse
-
-# 2. Bağımlılıkları yükle
 npm install
-
-# 3. Geliştirme sunucusunu başlat
-npm run dev
-
-# 4. Tarayıcıda aç
-open http://localhost:3000
+npm run dev       # http://localhost:3000
 ```
 
 ### Build
@@ -147,15 +120,6 @@ npm run build
 npm start
 ```
 
-## 🎬 Remotion Videoları
-
-TrendPulse için Remotion ile hazırlanmış animasyonlu intro videoları:
-
-- **Landscape (16:9):** `public/assets/trendpulse-intro.mp4` — YouTube/X için
-- **Portrait (9:16):** `public/assets/trendpulse-intro-mobile.mp4` — Shorts/Reels için
-
-Proje: [`/home/kurtar/projects/trendpulse-remotion/`](https://github.com/mustafabozkaya/trendpulse-remotion) (ayrı repo)
-
 ## 🗺️ Roadmap
 
 - [x] MVP — Web + Reddit + HN + YouTube
@@ -163,31 +127,19 @@ Proje: [`/home/kurtar/projects/trendpulse-remotion/`](https://github.com/mustafa
 - [ ] 🔮 Polymarket (tahmin piyasaları)
 - [ ] 📱 TikTok desteği
 - [ ] 📄 PDF rapor export
-- [ ] 🤖 AI sentez raporu (özet çıkarsın)
+- [ ] 🤖 AI sentez raporu
 - [ ] 👤 Kullanıcı girişi + abonelik
-- [ ] 🌙 Karanlık tema (zaten koyu)
-- [ ] 🔗 API erişimi (ücretli)
-
-## 💰 Planlanan Fiyatlandırma
-
-| Tier | Fiyat | Özellikler |
-|------|-------|------------|
-| 🆓 Free | $0 | 10 araştırma/ay |
-| ⭐ Starter | $19/ay | 50 araştırma/ay |
-| 🚀 Growth | $49/ay | Sınırsız, öncelikli destek |
-| 🏢 Pro | $99/ay | Takım, API erişimi, özel entegrasyon |
-
-> **Not:** Şu an her şey ücretsiz. Roadmap tamamlandıkça tier'lar aktif olacak.
+- [ ] 🔗 API erişimi
 
 ## 🤝 Katkıda Bulunma
 
 1. Fork'la
-2. Feature branch aç: `git checkout -b yeni-ozellik`
-3. Değişiklikleri commit et: `git commit -m 'Yeni özellik: ...'`
-4. Branch'i push et: `git push origin yeni-ozellik`
+2. Branch aç: `git checkout -b yeni-ozellik`
+3. Commit: `git commit -m 'Yeni özellik: ...'`
+4. Push: `git push origin yeni-ozellik`
 5. PR aç
 
-Issue'ler ve öneriler için [GitHub Issues](https://github.com/mustafabozkaya/trendpulse/issues).
+Issue ve öneriler: [GitHub Issues](https://github.com/mustafabozkaya/trendpulse/issues)
 
 ## 📬 İletişim
 
@@ -198,7 +150,7 @@ Issue'ler ve öneriler için [GitHub Issues](https://github.com/mustafabozkaya/t
 
 ## 📄 Lisans
 
-MIT License — detaylar için [LICENSE](LICENSE) dosyasına bak.
+MIT License — detaylar için [LICENSE](LICENSE)'e bak.
 
 ---
 
