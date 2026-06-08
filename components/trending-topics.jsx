@@ -13,7 +13,7 @@ const TRENDING_TOPICS = [
 export default function TrendingTopics({ onSelect, loading }) {
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <p className="text-xs text-zinc-500 text-center mb-3">Popüler konuları dene:</p>
+      <p className="text-xs text-zinc-500 text-center mb-3">Try trending topics:</p>
       <div className="flex flex-wrap justify-center gap-2">
         {TRENDING_TOPICS.map(({ label, icon }) => (
           <button

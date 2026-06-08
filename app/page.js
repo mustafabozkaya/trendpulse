@@ -24,12 +24,12 @@ export default function HomePage() {
       const json = await res.json();
 
       if (!res.ok) {
-        setError(json.error || 'Bir hata oluştu.');
+        setError(json.error || 'An error occurred.');
       } else {
         setData(json);
       }
     } catch (err) {
-      setError('Sunucuya bağlanılamadı. Lütfen tekrar deneyin.');
+      setError('Could not connect. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -48,16 +48,16 @@ export default function HomePage() {
 
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-            Son 30 Günün
+            Discover the Latest
             <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Trendlerini Keşfet
+              Trends of the Last 30 Days
             </span>
           </h1>
 
           <p className="text-base sm:text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Web, Reddit, Hacker News ve YouTube&apos;da son 30 günde ne konuşuluyor?
-            Tek sorguyla tüm kaynakları tara.
+            What's being discussed on Web, Reddit, Hacker News and YouTube in the last 30 days?
+            Single query, all sources.
           </p>
 
           {/* Search */}
@@ -102,7 +102,7 @@ export default function HomePage() {
                   onClick={() => handleSearch(topic)}
                   className="mt-4 text-sm text-indigo-400 hover:text-indigo-300 transition"
                 >
-                  Tekrar dene
+                  Retry
                 </button>
               </div>
             )}
@@ -119,18 +119,18 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-3 gap-6 text-center">
               <div className="p-4">
                 <div className="text-2xl mb-2">🔍</div>
-                <h3 className="text-sm font-semibold mb-1">Konu Gir</h3>
-                <p className="text-xs text-zinc-500">Araştırmak istediğin konuyu yaz</p>
+                <h3 className="text-sm font-semibold mb-1">Enter Topic</h3>
+                <p className="text-xs text-zinc-500">What do you want to research?</p>
               </div>
               <div className="p-4">
                 <div className="text-2xl mb-2">🤖</div>
-                <h3 className="text-sm font-semibold mb-1">AI Tarar</h3>
-                <p className="text-xs text-zinc-500">Web, Reddit, HN, YouTube paralel taranır</p>
+                <h3 className="text-sm font-semibold mb-1">AI Scans</h3>
+                <p className="text-xs text-zinc-500">Web, Reddit, HN, YouTube scanned in parallel</p>
               </div>
               <div className="p-4">
                 <div className="text-2xl mb-2">📊</div>
-                <h3 className="text-sm font-semibold mb-1">Rapor Al</h3>
-                <p className="text-xs text-zinc-500">Kaynak bazlı gruplanmış trend sonuçları</p>
+                <h3 className="text-sm font-semibold mb-1">Get Report</h3>
+                <p className="text-xs text-zinc-500">Source-grouped trend results</p>
               </div>
             </div>
           </div>

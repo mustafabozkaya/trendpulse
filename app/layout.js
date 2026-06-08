@@ -12,30 +12,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "TrendPulse — Son 30 Günün Trend Analizi",
+  title: "TrendPulse — Trend Analysis for the Last 30 Days",
   description:
-    "Web, Reddit, Hacker News ve YouTube'da son 30 günde bir konu hakkında ne konuşuluyor? AI destekli trend intelligence aracı.",
+    "Discover what's trending on Web, Reddit, Hacker News and YouTube in the last 30 days. AI-powered trend intelligence tool.",
   keywords: [
-    "trend analizi",
+    "trend analysis",
     "last30days",
-    "sosyal dinleme",
+    "social listening",
     "trend intelligence",
-    "AI araştırma",
-    "içerik araştırması",
+    "AI research",
+    "content research",
   ],
   openGraph: {
-    title: "TrendPulse — Son 30 Günün Trend Analizi",
+    title: "TrendPulse — Trend Analysis for the Last 30 Days",
     description:
-      "Web, Reddit, HN, YouTube. Tek sorguda tüm kaynaklarda son 30 günün trendleri.",
+      "Web, Reddit, HN, YouTube. Single query across all sources for the latest trends.",
     siteName: "TrendPulse",
     type: "website",
-    locale: "tr_TR",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "TrendPulse — Son 30 Günün Trend Analizi",
+    title: "TrendPulse — Trend Analysis for the Last 30 Days",
     description:
-      "Web, Reddit, HN, YouTube. Son 30 günün trendlerini keşfedin.",
+      "Web, Reddit, HN, YouTube. Discover the latest trends.",
   },
   robots: {
     index: true,
@@ -46,7 +46,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="tr"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
 
         <footer className="border-t border-white/5 py-6 text-center text-xs text-zinc-600">
           <div className="max-w-6xl mx-auto px-4">
-            TrendPulse — AI destekli trend intelligence &middot; mustafabozkaya &copy; 2026
+            TrendPulse — AI-powered trend intelligence &middot; mustafabozkaya &copy; 2026
           </div>
         </footer>
       </body>

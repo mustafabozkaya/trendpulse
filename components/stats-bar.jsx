@@ -24,7 +24,7 @@ export default function StatsBar({ summary }) {
               {icon} {label}
             </span>
             <div className="text-xl font-bold text-white">{count}</div>
-            <div className="text-[11px] text-zinc-500">sonuç</div>
+            <div className="text-[11px] text-zinc-500">results</div>
           </div>
         );
       })}

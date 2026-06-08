@@ -9,10 +9,10 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const topic = searchParams.get('q');
 
-  // ─── Validasyon ───
+  // ─── Validation ───
   if (!topic || topic.trim().length < 2) {
     return NextResponse.json(
-      { error: 'En az 2 karakter girin.' },
+      { error: 'Enter at least 2 characters.' },
       { status: 400 }
     );
   }
@@ -24,7 +24,7 @@ export async function GET(request) {
   const rateCheck = checkRateLimit(ip);
   if (!rateCheck.allowed) {
     return NextResponse.json(
-      { error: `Çok fazla istek. ${rateCheck.resetIn}s bekleyin.` },
+      { error: `Too many requests. Wait ${rateCheck.resetIn}s.` },
       { status: 429, headers: { 'Retry-After': rateCheck.resetIn.toString() } }
     );
   }
@@ -38,7 +38,7 @@ export async function GET(request) {
     return NextResponse.json({ ...cached, fromCache: true });
   }
 
-  // ─── Araştırma ───
+  // ─── Research ───
   try {
     const result = await researchTrend(query);
     setCache(cacheKey, result);
@@ -46,7 +46,7 @@ export async function GET(request) {
   } catch (error) {
     console.error('Research error:', error);
     return NextResponse.json(
-      { error: 'Araştırma yapılırken hata oluştu. Lütfen tekrar deneyin.' },
+      { error: 'Research failed. Please try again.' },
       { status: 500 }
     );
   }

@@ -22,9 +22,9 @@ export default function ResultsDashboard({ data, topic }) {
     return (
       <div className="text-center py-12">
         <div className="text-4xl mb-3">🔍</div>
-        <h3 className="text-lg font-semibold mb-1">Sonuç bulunamadı</h3>
+        <h3 className="text-lg font-semibold mb-1">No results found</h3>
         <p className="text-sm text-zinc-500">
-          &ldquo;{topic}&rdquo; için son 30 günde kayda değer bir şey bulunamadı. Farklı bir konu deneyin.
+          &ldquo;{topic}&rdquo; — nothing noteworthy found in the last 30 days. Try a different topic.
         </p>
       </div>
     );
@@ -35,11 +35,11 @@ export default function ResultsDashboard({ data, topic }) {
       {/* Header */}
       <div>
         <h2 className="text-xl font-bold flex items-center gap-2">
-          <span>📊</span> &ldquo;{topic}&rdquo; Sonuçları
+          <span>📊</span> &ldquo;{topic}&rdquo; Results
         </h2>
         <p className="text-xs text-zinc-500 mt-1">
-          {summary?.total} sonuç · {duration}ms
-          {fromCache && ' · (önbellekten)'}
+          {summary?.total} results · {duration}ms
+          {fromCache && ' · (cached)'}
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export default function ResultsDashboard({ data, topic }) {
       {/* Footer */}
       <div className="text-center pt-4 pb-2">
         <p className="text-[11px] text-zinc-600">
-          TrendPulse · Son 30 gün verisi · Kaynaklara tıklayarak detayları görebilirsiniz
+          TrendPulse · Last 30 days data · Click sources for details
         </p>
       </div>
     </div>

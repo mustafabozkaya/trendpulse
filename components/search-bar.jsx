@@ -29,14 +29,14 @@ export default function SearchBar({ onSearch, loading }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Bir konu ara: AI agents, GPT-5, Claude..."
+            placeholder="Search a topic: AI agents, GPT-5, Claude..."
             disabled={loading}
             className="w-full h-12 pl-12 pr-4 rounded-xl border border-white/10 bg-white/[0.05]
                        text-white placeholder-zinc-500 text-base
                        focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20
                        disabled:opacity-50 disabled:cursor-not-allowed
                        transition-all duration-200"
-            aria-label="Araştırma konusu"
+            aria-label="Search topic"
             autoComplete="off"
           />
         </div>
@@ -49,19 +49,19 @@ export default function SearchBar({ onSearch, loading }) {
                      transition-all duration-200
                      flex items-center gap-2 whitespace-nowrap
                      shadow-lg shadow-indigo-600/20"
-          aria-label="Ara"
+          aria-label="Search"
         >
           {loading ? (
             <>
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Araştırıyor...
+              Searching...
             </>
           ) : (
             <>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-              Araştır
+              Search
             </>
           )}
         </button>
