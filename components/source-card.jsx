@@ -30,7 +30,7 @@ export default function SourceCard({ result, source }) {
 
           {/* Meta info */}
           <div className="flex items-center gap-3 mt-1.5 text-xs text-zinc-500">
-            {result.score != null && (
+            {result.score != null && source !== 'x' && (
               <span className="flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -38,6 +38,20 @@ export default function SourceCard({ result, source }) {
                 </svg>
                 {formatNumber(result.score)}
               </span>
+            )}
+            {/* X-specific metrics */}
+            {source === 'x' && result.metrics && (
+              <>
+                {result.metrics.likes > 0 && (
+                  <span className="flex items-center gap-1">❤️ {formatNumber(result.metrics.likes)}</span>
+                )}
+                {result.metrics.retweets > 0 && (
+                  <span className="flex items-center gap-1">🔄 {formatNumber(result.metrics.retweets)}</span>
+                )}
+                {result.metrics.replies > 0 && (
+                  <span className="flex items-center gap-1">💬 {formatNumber(result.metrics.replies)}</span>
+                )}
+              </>
             )}
             {result.comments != null && (
               <span className="flex items-center gap-1">

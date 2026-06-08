@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import SearchBar from '@/components/search-bar';
 import ResultsDashboard from '@/components/results-dashboard';
 import TrendingTopics from '@/components/trending-topics';
+import XSourceToggle from '@/components/x-source-toggle';
 
 export default function HomePage() {
   const [topic, setTopic] = useState('');
@@ -11,6 +12,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searched, setSearched] = useState(false);
+  const [includeX, setIncludeX] = useState(false);
 
   const handleSearch = useCallback(async (query) => {
     setLoading(true);
@@ -20,7 +22,10 @@ export default function HomePage() {
     setTopic(query);
 
     try {
-      const res = await fetch(`/api/research?q=${encodeURIComponent(query)}`);
+      const params = new URLSearchParams({ q: query });
+      if (includeX) params.set('x', 'true');
+
+      const res = await fetch(`/api/research?${params}`);
       const json = await res.json();
 
       if (!res.ok) {
@@ -33,7 +38,7 @@ export default function HomePage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [includeX]);
 
   return (
     <div className="flex-1 flex flex-col">
@@ -56,13 +61,21 @@ export default function HomePage() {
           </h1>
 
           <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto">
-            What's trending on <strong>Reddit</strong>, <strong>HN</strong>, <strong>YouTube</strong>, <strong>Polymarket</strong> &amp; <strong>GitHub</strong> in the last 30 days?
+            What's trending on <strong>Reddit</strong>, <strong>HN</strong>, <strong>YouTube</strong>, <strong>X/Twitter</strong> &amp; more in the last 30 days?
             Single query, all sources.
           </p>
 
           {/* Search */}
           <div className="pt-4">
             <SearchBar onSearch={handleSearch} loading={loading} />
+          </div>
+
+          {/* Source toggles */}
+          <div className="flex items-center justify-center gap-6 pt-2">
+            <XSourceToggle
+              includeX={includeX}
+              onToggle={() => setIncludeX((v) => !v)}
+            />
           </div>
 
           {/* Trending Topics (only show before first search) */}
@@ -116,7 +129,7 @@ export default function HomePage() {
       {!searched && !loading && (
         <section className="py-12 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-4">
-            <div className="grid sm:grid-cols-3 gap-6 text-center">
+            <div className="grid sm:grid-cols-4 gap-6 text-center">
               <div className="p-4">
                 <div className="text-2xl mb-2">🔍</div>
                 <h3 className="text-sm font-semibold mb-1">Enter Topic</h3>
@@ -125,12 +138,17 @@ export default function HomePage() {
               <div className="p-4">
                 <div className="text-2xl mb-2">🤖</div>
                 <h3 className="text-sm font-semibold mb-1">AI Scans</h3>
-                <p className="text-xs text-zinc-500">Web, Reddit, HN, YouTube scanned in parallel</p>
+                <p className="text-xs text-zinc-500">Web, Reddit, HN, X, YouTube scanned in parallel</p>
               </div>
               <div className="p-4">
                 <div className="text-2xl mb-2">📊</div>
                 <h3 className="text-sm font-semibold mb-1">Get Report</h3>
                 <p className="text-xs text-zinc-500">Source-grouped trend results</p>
+              </div>
+              <div className="p-4">
+                <div className="text-2xl mb-2">🐦</div>
+                <h3 className="text-sm font-semibold mb-1">X Data</h3>
+                <p className="text-xs text-zinc-500">Login with X for full API access</p>
               </div>
             </div>
           </div>

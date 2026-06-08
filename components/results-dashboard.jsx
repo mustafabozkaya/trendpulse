@@ -55,6 +55,7 @@ export default function ResultsDashboard({ data, topic }) {
             youtube: '▶️ YouTube',
             polymarket: '📈 Polymarket',
             github: '🐙 GitHub',
+            x: '🐦 X/Twitter',
           };
           return (
             <section key={source}>

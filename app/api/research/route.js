@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server';
 import { researchTrend } from '@/lib/research';
 import { getCached, setCache } from '@/lib/cache';
 import { checkRateLimit } from '@/lib/rate-limit';
+import { auth } from '@/lib/auth';
 
-export const runtime = 'nodejs'; // required for fetch + cache
+export const runtime = 'nodejs';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const topic = searchParams.get('q');
+  const includeX = searchParams.get('x') === 'true';
 
   // ─── Validation ───
   if (!topic || topic.trim().length < 2) {
@@ -31,8 +33,18 @@ export async function GET(request) {
 
   const query = topic.trim();
 
-  // ─── Cache ───
-  const cacheKey = `research:${query.toLowerCase()}`;
+  // ─── Auth check for X source ───
+  let xAccessToken = null;
+  if (includeX) {
+    const session = await auth();
+    if (session?.user?.accessToken) {
+      xAccessToken = session.user.accessToken;
+    }
+    // includeX stays true even without token — research-x.js handles fallback
+  }
+
+  // ─── Cache (different key if X is enabled) ───
+  const cacheKey = `research:${query.toLowerCase()}:x=${includeX}`;
   const cached = getCached(cacheKey);
   if (cached) {
     return NextResponse.json({ ...cached, fromCache: true });
@@ -40,7 +52,10 @@ export async function GET(request) {
 
   // ─── Research ───
   try {
-    const result = await researchTrend(query);
+    const result = await researchTrend(query, {
+      includeX,
+      xAccessToken,
+    });
     setCache(cacheKey, result);
     return NextResponse.json({ ...result, fromCache: false });
   } catch (error) {

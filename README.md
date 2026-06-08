@@ -38,9 +38,10 @@
 
 ## ✨ Features
 
-- **🌐 Multi-Source** — Web, Reddit, Hacker News, YouTube — single query
+- **🌐 Multi-Source** — Web, Reddit, Hacker News, YouTube, **X/Twitter** — single query
 - **⚡ Fast** — ~1-2 second results
 - **🔒 Zero API Keys** — DuckDuckGo + Reddit JSON + HN Algolia + Invidious
+- **🐦 X/Twitter Login** — OAuth with X for authenticated API access (fallback via web search when not logged in)
 - **📦 Zero Setup** — Open in browser, start searching
 - **🆓 Completely Free** — For now
 - **📱 Responsive** — Mobile, tablet, desktop
@@ -63,7 +64,8 @@ User → Search query → API Gateway
                            ├── DuckDuckGo (Web)
                            ├── Reddit JSON
                            ├── HN Algolia
-                           └── Invidious (YouTube)
+                           ├── Invidious (YouTube)
+                           └── X/Twitter (API if authenticated → web fallback)
                        → JSON → React UI
 ```
 
@@ -76,7 +78,7 @@ User → Search query → API Gateway
 | **Deploy** | Vercel (Serverless Functions) |
 | **Cache** | In-memory TTL cache (5min, max 200 entries) |
 | **Rate Limit** | IP-based (10 req/min) |
-| **Search** | DuckDuckGo, Reddit JSON, HN Algolia, Invidious |
+| **Search** | DuckDuckGo, Reddit JSON, HN Algolia, Invidious, X/Twitter |
 
 ## 🏗️ Project Structure
 
@@ -120,10 +122,35 @@ npm run build
 npm start
 ```
 
+## 🐦 X/Twitter Integration
+
+TrendPulse supports X/Twitter as a search source in two modes:
+
+1. **Authenticated (API)** — Click "Login with X" in the navbar to OAuth with your X account. The app then uses X API v2 for tweet search — better quality, engagement metrics (likes/retweets/replies), and author info.
+2. **Fallback (Web)** — When not logged in, X search still works via DuckDuckGo `site:twitter.com` search. Limited results, no metrics.
+
+### Setup (Optional — skip to run without X)
+
+To enable X OAuth login, create a Twitter Developer App:
+
+1. Go to [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+2. Create a new App → Enable OAuth 2.0
+3. Set callback URL: `http://localhost:3000/api/auth/callback/twitter`
+4. Copy `.env.local.example` to `.env.local` and fill in your credentials:
+
+```
+TWITTER_CLIENT_ID=your_client_id
+TWITTER_CLIENT_SECRET=your_client_secret
+```
+
+For production (Vercel), also set `NEXTAUTH_SECRET` and `NEXTAUTH_URL`.
+
+> **Note:** X authentication is **completely optional**. The app works without it — X search falls back to web results automatically.
+
 ## 🗺️ Roadmap
 
 - [x] MVP — Web + Reddit + HN + YouTube
-- [ ] 🐦 X/Twitter integration
+- [x] 🐦 X/Twitter integration (OAuth login + web fallback)
 - [ ] 🔮 Polymarket (prediction markets)
 - [ ] 📱 TikTok support
 - [ ] 📄 PDF report export
